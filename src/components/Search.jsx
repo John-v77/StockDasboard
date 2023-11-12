@@ -18,7 +18,7 @@ function Search(props) {
   };
 
   return (
-    <div className="flex item-center my-4 border-2 rounded-md relative w-96 bg-white border-neutral-200">
+    <div className="flex item-center my-4 border-2 rounded-md relative w-96 bg-white border-neutral-200 z-40">
       <input
         type="text"
         value={input}
