@@ -16,7 +16,6 @@ function Details({ details }) {
 
   return (
     <Card>
-      details
       <ul className="w-full h-full flex flex-col justify-between divide-y-1">
         {Object.keys(detailsList).map((item) => {
           return (
