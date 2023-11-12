@@ -3,3 +3,23 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #a5b4fc;
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar-dark::-webkit-scrollbar {
+    background: #312e81;
+  }
+}
