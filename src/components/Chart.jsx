@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import Card from "./Card";
-import { convertUnixTimestampToDate } from "../utils/tools";
 import { mockHistoricalData } from "../mockdata";
+import { convertUnixTimestampToDate } from "../utils/tools";
 
-import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 function Chart(props) {
   const [data, setData] = useState(mockHistoricalData);
@@ -21,13 +28,14 @@ function Chart(props) {
       <ResponsiveContainer>
         <AreaChart data={formatData(data)}>
           <defs>
-            <linearGradient
-              id="chartColor"
-              x1="0"
-              y1="0"
-              x2="0"
-              y2="1"
-            ></linearGradient>
+            <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="5%"
+                stopColor="rgb(199 210 254)"
+                stopOpacity={0.8}
+              />
+              <stop offset="95%" stopColor="rgb(199 210 254)" stopOpacity={0} />
+            </linearGradient>
           </defs>
           <Area
             type="monotone"
@@ -37,7 +45,7 @@ function Chart(props) {
             fill="url(#chartColor)"
             strokeWidth={0.5}
           />
-
+          <Tooltip />
           <XAxis dataKey="date" />
           <YAxis domain={["dataMin", "dataMax"]} />
         </AreaChart>
