@@ -1,15 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import Card from "./Card";
 import { mockCompanyDetails, resStocks } from "../mockdata";
 import Header from "./Header";
 import Details from "./Details";
 import Overview from "./Overview";
-import Chart from "./Chart";
-import ThemeContext from "../context/ThemeContext";
 
 function Dashboard(props) {
-  const { darkMode } = useContext(ThemeContext);
-
   return (
     <div className="h-screen grid grid-cols-1 grid-rows-8 md:grid-cols-2 md:grid-rows-7 xl:grid-cols-3 auto-rows-fr gap-4 p-10 font-quicksand">
       <div className="col-span-1 md:col-span-2 xl:col-span-3 flex items-center">
@@ -28,7 +24,7 @@ function Dashboard(props) {
         />
       </div>
       <div className="row-span-2 xl:row-span-3 ">
-        <Card>Details</Card>
+        <Details details={mockCompanyDetails} />
       </div>
     </div>
   );

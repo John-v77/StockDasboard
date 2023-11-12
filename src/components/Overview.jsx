@@ -4,7 +4,6 @@ import Card from "./Card";
 function Overview({ symbol, price, change }) {
   return (
     <Card>
-      Overview
       <span className="absolute left-2 top-2 text-neutral-400 text-lg xl:text-xl 2xl:text-xl">
         {symbol}
       </span>
