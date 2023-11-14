@@ -1,20 +1,29 @@
 import React from "react";
 import { useState } from "react";
-import { resStocks } from "../mockdata";
 import { XIcon, SearchIcon } from "@heroicons/react/solid";
 import SearchResults from "./SearchResults";
+import { searchSymbols } from "../api/Stocks-api";
 
 function Search(props) {
   const [input, setInput] = useState("");
-  const [bestMatches, setBestMatches] = useState(resStocks.result);
+  const [bestMatches, setBestMatches] = useState([]);
 
   const clear = () => {
     setInput("");
     setBestMatches([]);
   };
 
-  const updateBestMatches = () => {
-    setBestMatches(resStocks.result);
+  const updateBestMatches = async () => {
+    // setBestMatches(resStocks.result);
+    try {
+      if (input) {
+        const result = await searchSymbols(input);
+        setBestMatches(result);
+      }
+    } catch (err) {
+      setBestMatches([]);
+      console.log(err);
+    }
   };
 
   return (
