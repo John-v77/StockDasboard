@@ -18,13 +18,16 @@ import {
   YAxis,
 } from "recharts";
 import StockContext from "../context/StockContext";
+
 import { fetchHistoricalData } from "../api/Stocks-api";
+import ThemeContext from "../context/ThemeContext";
 
 function Chart(props) {
   const [data, setData] = useState(mockHistoricalData);
   const [filter, setFilter] = useState("1W");
 
   const { stockSymbol } = useContext(StockContext);
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     // get range of chart
@@ -94,10 +97,14 @@ function Chart(props) {
             <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
               <stop
                 offset="5%"
-                stopColor="rgb(199 210 254)"
+                stopColor={`${darkMode ? "#312e81" : "#c7d2fe"}`}
                 stopOpacity={0.8}
               />
-              <stop offset="95%" stopColor="rgb(199 210 254)" stopOpacity={0} />
+              <stop
+                offset="95%"
+                stopColor={`${darkMode ? "#312e81" : "#c7d2fe"}`}
+                stopOpacity={0}
+              />
             </linearGradient>
           </defs>
           <Area
@@ -108,7 +115,11 @@ function Chart(props) {
             fill="url(#chartColor)"
             strokeWidth={0.5}
           />
-          <Tooltip className="text-xs" />
+          <Tooltip
+            className="text-xs"
+            contentStyle={darkMode ? { backgroundColor: "#111827" } : null}
+            itemStyle={darkMode ? { color: "#818cf8" } : null}
+          />
           <XAxis dataKey="data" className="text-xs" />
           <YAxis domain={["dataMin", "dataMax"]} className="text-xs" />
         </AreaChart>
