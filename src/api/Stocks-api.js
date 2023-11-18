@@ -22,3 +22,14 @@ export const fetchQuote = async (stockSymbol) => {
     return res.data;
   }
 };
+
+export const fetchHistoricalData = async (
+  stockSymbol,
+  resolution,
+  from,
+  to
+) => {
+  const url = `${basePath}/stock/candle?symbol=${stockSymbol}&resolution=${resolution}&from=${from}&to=${to}&token=${process.env.REACT_APP_STOCK_API_KEY}`;
+  const res = await axios.get(url);
+  return res.data;
+};
