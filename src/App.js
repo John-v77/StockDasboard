@@ -1,13 +1,16 @@
-import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
+import StockContext from "./context/StockContext";
 
 function App() {
+  const [stockSymbol, setStockSymbol] = useState("");
   return (
-    <div className="App">
-      Hello from React
-      <Dashboard />
-    </div>
+    <StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
+      <div className="App">
+        <Dashboard />
+      </div>
+    </StockContext.Provider>
   );
 }
 
