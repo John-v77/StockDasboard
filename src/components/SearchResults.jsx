@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import StockContext from "../context/StockContext";
 
-function SearchResults({ results }) {
+function SearchResults({ results, clear }) {
   const { setStockSymbol, stockSymbol } = useContext(StockContext);
 
   return (
@@ -10,14 +10,14 @@ function SearchResults({ results }) {
         return (
           <li
             key={item.symbol}
-            className="cursor-pointer p-4 m-2 flex items-center justify-between rounded-md hover:bg-indigo-200"
+            className="cursor-pointer p-4 m-2 text-sm flex items-center justify-between rounded-md hover:bg-indigo-200"
             onClick={() => {
               setStockSymbol(item.symbol);
+              clear();
             }}
           >
             <span>{item.symbol}</span>
             <span>{item.description}</span>
-            <span>{item.symbol}</span>
           </li>
         );
       })}

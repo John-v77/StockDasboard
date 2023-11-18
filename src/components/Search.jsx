@@ -54,7 +54,7 @@ function Search(props) {
       </button>
 
       {input && bestMatches.length > 0 ? (
-        <SearchResults results={bestMatches} />
+        <SearchResults results={bestMatches} clear={clear} />
       ) : null}
     </div>
   );
