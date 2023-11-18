@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { MoonIcon } from "@heroicons/react/solid";
+import ThemeContext from "../context/ThemeContext";
 
 function ThemeIcon(props) {
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -11,7 +12,7 @@ function ThemeIcon(props) {
   return (
     <button
       className={`rounded-lg border-1 border-neutral-400 p-2 absolute top-10 right-10 xl:right-32 xl:top-14 shadow-lg ${
-        darkMode ? "shadow-md shadow-gray-600" : null
+        darkMode ? "shadow-md shadow-gray-600 border border-neutral-600" : null
       }`}
       onClick={toggleDarkMode}
     >
