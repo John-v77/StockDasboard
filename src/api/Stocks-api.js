@@ -14,3 +14,11 @@ export const fetchStockDetails = async (stockSymbol) => {
     return res.data;
   }
 };
+
+export const fetchQuote = async (stockSymbol) => {
+  if (stockSymbol) {
+    const url = `${basePath}/quote?symbol=${stockSymbol}&token=${process.env.REACT_APP_STOCK_API_KEY}`;
+    const res = await axios.get(url);
+    return res.data;
+  }
+};

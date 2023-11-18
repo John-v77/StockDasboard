@@ -4,11 +4,12 @@ import Details from "./Details";
 import Overview from "./Overview";
 import Chart from "./Chart";
 import StockContext from "../context/StockContext";
-import { fetchStockDetails } from "../api/Stocks-api";
+import { fetchQuote, fetchStockDetails } from "../api/Stocks-api";
 
 function Dashboard(props) {
   const { stockSymbol } = useContext(StockContext);
   const [stockDetails, setStockDetails] = useState({});
+  const [qoute, setQuote] = useState({});
 
   useEffect(() => {
     const updateStockDetails = async () => {
@@ -21,6 +22,17 @@ function Dashboard(props) {
       }
     };
 
+    const updateStockOverview = async () => {
+      try {
+        const res = await fetchQuote(stockSymbol);
+        setQuote(res);
+      } catch (err) {
+        setQuote({});
+        console.log(err);
+      }
+    };
+
+    updateStockOverview();
     updateStockDetails();
   }, [stockSymbol]);
 
@@ -37,10 +49,10 @@ function Dashboard(props) {
       <div className="row-span-1">
         <Overview
           symbol={stockSymbol}
-          price={30}
-          change={3}
-          changePercent={10}
-          currency={"usd"}
+          price={qoute?.pc}
+          change={qoute?.d}
+          changePercent={qoute?.dp}
+          currency={stockDetails?.currency}
         />
       </div>
       <div className="row-span-3 xl:row-span-3 ">

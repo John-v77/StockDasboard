@@ -14,7 +14,6 @@ function Search(props) {
   };
 
   const updateBestMatches = async () => {
-    // setBestMatches(resStocks.result);
     try {
       if (input) {
         const result = await searchSymbols(input);
