@@ -2,14 +2,6 @@ import React from "react";
 import Card from "./Card";
 
 function Details({ details }) {
-  const detailsList = {
-    name: "Name",
-    country: "Country",
-    exchange: "Exchange",
-    ipo: "IPO Date",
-    marketCapitalization: "Market Cap.",
-    finnhubIndustry: "Industry",
-  };
   const convertMilltoBillions = (number) => {
     return (number / 1000).toFixed(2);
   };
@@ -17,14 +9,26 @@ function Details({ details }) {
   return (
     <Card>
       <ul className="w-full h-full flex flex-col justify-between divide-y-1">
-        {Object.keys(detailsList).map((item) => {
+        {Object.keys(details).map((item) => {
+          if (
+            [
+              "estimateCurrency",
+              "logo",
+              "exchange",
+              "finnhubIndustry",
+              "phone",
+              "ticker",
+            ].includes(item)
+          ) {
+            return;
+          }
           return (
             <li key={item} className="flex-1 flex justify-between items-center">
-              <span>{detailsList[item]}</span>
+              <span>{item}</span>
               <span>
-                {item === "marketCap"
-                  ? `${convertMilltoBillions(detailsList[item])}B`
-                  : detailsList[item]}
+                {item === "marketCapitalization"
+                  ? `${convertMilltoBillions(details[item])}B`
+                  : details[item]}
               </span>
             </li>
           );
