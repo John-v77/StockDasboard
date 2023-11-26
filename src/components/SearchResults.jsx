@@ -15,21 +15,23 @@ function SearchResults({ results, clear }) {
       }`}
     >
       {results.map((item) => {
-        return (
-          <li
-            key={item.symbol}
-            className={`cursor-pointer p-4 m-2 text-sm flex items-center justify-between rounded-md   ${
-              darkMode ? "hover:bg-indigo-700" : "hover:bg-indigo-200"
-            }`}
-            onClick={() => {
-              setStockSymbol(item.symbol);
-              clear();
-            }}
-          >
-            <span>{item.symbol}</span>
-            <span>{item.description}</span>
-          </li>
-        );
+        if (!item.symbol.includes(".")) {
+          return (
+            <li
+              key={item.symbol}
+              className={`cursor-pointer p-4 m-2 text-sm flex items-center justify-between rounded-md ${
+                darkMode ? "hover:bg-indigo-700" : "hover:bg-indigo-200"
+              }`}
+              onClick={() => {
+                setStockSymbol(item.symbol);
+                clear();
+              }}
+            >
+              <span>{item.symbol}</span>
+              <span>{item.description}</span>
+            </li>
+          );
+        }
       })}
     </ul>
   );
